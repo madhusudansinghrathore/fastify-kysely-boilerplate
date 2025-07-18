@@ -1,0 +1,46 @@
+services:
+  mysql:
+    image: mysql:latest
+    container_name: fastify_kysely_mysql_container
+    environment:
+      MYSQL_DATABASE: ${DATABASE_NAME}
+      MYSQL_USER: ${DATABASE_USERNAME}
+      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "${MYSQL_PORT}:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    # networks:
+    #   - my_mysql_network
+
+volumes:
+  mysql-data:
+    driver: local
+
+# networks:
+#   my_mysql_network:
+#     driver: bridge
+
+# docker-compose.yml
+# services:
+#   redis:
+#     image: redis:latest
+#     container_name: whatsapp_bot_mq
+#     restart: always
+#     ports:
+#       - "${REDIS_PORT}:6379"
+#     volumes:
+#       - whatsapp_bot_mq_data:/data
+#     command:
+#       - redis-server
+#       - --appendonly
+#       - "yes"
+#       - --requirepass
+#       - "${REDIS_PASSWORD}"
+#     environment:
+#       REDIS_PASSWORD: "${REDIS_PASSWORD}"
+
+# volumes:
+#   whatsapp_bot_mq_data:
+#     driver: local
