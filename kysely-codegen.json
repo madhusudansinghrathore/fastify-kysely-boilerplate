@@ -1,6 +1,0 @@
-{
-    "dialect": "mysql",
-    "schema": "./prisma/schema.prisma",
-    "outputPath": "./src/db/types.ts",
-    "camelCase": true
-}

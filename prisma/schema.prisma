@@ -1,15 +1,26 @@
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 generator kysely {
-  provider = "prisma-kysely"
-  output       = "../src/db"
-  fileName     = "types.ts"
-  enumFileName = "enums.ts"
+    provider     = "prisma-kysely"
+    output       = "../src/db"
+    fileName     = "types.ts"
+    enumFileName = "enums.ts"
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+    id        String   @id @default(uuid())
+    email     String   @unique
+    firstName String
+    lastName  String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("users")
 }
